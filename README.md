@@ -1,41 +1,16 @@
-FITPEO-REVENUE-CALCULATOR
-Create a new Java project (no Maven).
-Manually Download Dependencies:
-Download the Selenium Java jar files from "Selenium Downloads".
-Download WebDriverManager jar files from "WebDriverManager" on "Maven Repository".
--->Add JARs to Project:
-Add the downloaded JARs to your project's build path.
-Set Up the WebDriver
-Install ChromeDriver (for Chrome users):
-You can download ChromeDriver from here.
-If you're using WebDriverManager (as recommended), it will automatically handle the driver setup.
-Set the WebDriver Path:
-If you are using WebDriverManager, no manual setup is required.
-If you're setting the path manually, ensure the following line is included in your code:
-"System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");"
-Implement the Selenium WebDriver Script
--->Create a new Java class (e.g., FitPeoAutomation).
-Run the Selenium Script
--->Option 1: Run in an IDE
-Open your project in the IDE.
-Right-click the Java file (e.g., FitPeoAutomation.java).
-Select "Run" to execute the script.
-The script should open a Chrome browser, perform the specified steps, and close the browser once done.
-Option 2: Run via Command Line (Non-Maven Project)
-If you're not using Maven, follow these steps:
-Compile the Java file:
-Open the command prompt or terminal.
-Navigate to the directory containing your FitPeoAutomation.java file.
-Compile the Java file using the following command:
+To begin with, create a new Java project without using Maven. For this, you will need to manually download the necessary dependencies. First, download the Selenium Java jar files from the Selenium Downloads page. Additionally, download the WebDriverManager jar files from the Maven Repository. Once these jar files are downloaded, you will need to add them to your project's build path to ensure the necessary libraries are included.
+Next, set up the WebDriver. If you are using Chrome, you will need to install ChromeDriver, which can be downloaded from the official site. However, if you are using WebDriverManager (which is the recommended approach), it will automatically handle the setup of the driver for you, meaning no manual intervention is needed. If you choose to set the path manually, make sure to include the following line in your code: System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");.
+After setting up the WebDriver, create a new Java class (e.g., FitPeoAutomation) to implement the Selenium WebDriver script. This script will automate tasks such as opening the FitPeo homepage, navigating to the Revenue Calculator page, interacting with UI elements like sliders, text fields, and checkboxes, and verifying that the correct Total Recurring Reimbursement value is displayed.
+
+To run the Selenium script, there are two options available. Option 1 is to run the script within an Integrated Development Environment (IDE) such as Eclipse or IntelliJ. After opening your project, simply right-click the Java file (e.g., FitPeoAutomation.java) and select the "Run" option. The script should then open a Chrome browser, perform the tasks as described, and close the browser when completed.
+Option 2 involves running the script via the command line if you're not using Maven. To do this, first compile the Java file by opening the terminal or command prompt and navigating to the directory containing the FitPeoAutomation.java file. Use the following command to compile the file:
 "javac -cp .:selenium-java-4.x.x.jar:webdrivermanager-5.x.x.jar FitPeoAutomation.java"
-Run the Java file:
-Run the compiled Java class:
+After compilation, run the Java file with this command:
 "java -cp .:selenium-java-4.x.x.jar:webdrivermanager-5.x.x.jar FitPeoAutomation"
---> Verifying the Script's Success
-Step 1: The script should open the FitPeo Homepage and navigate to the Revenue Calculator page.
-Step 2: It will scroll to the slider section and adjust the slider to 820.
-Step 3: The script will update the text field to 560 and ensure the slider moves accordingly.
-Step 4: It will select the required CPT codes and check if they are selected.
-Step 5: Finally, it will verify if the Total Recurring Reimbursement value is displayed as $110700.
+Finally, verify that the script has executed successfully by checking the following steps:
 
-
+->The script should open the FitPeo homepage and navigate to the Revenue Calculator page.
+->It will scroll to the slider section and adjust the slider to the value of 820.
+->The script will then update the text field to 560 and confirm that the slider moves accordingly.
+->Next, it will select the required CPT codes and check if they are correctly selected.
+->Lastly, it will ensure that the Total Recurring Reimbursement value is displayed as $110,700, confirming the correctness of the operation.
