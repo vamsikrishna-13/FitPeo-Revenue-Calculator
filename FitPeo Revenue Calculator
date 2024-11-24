@@ -14,50 +14,39 @@ import java.time.Duration;
 public class FitPeoAutomation {
 
     public static void main(String[] args) {
-        // Set up Chrome WebDriver (with WebDriverManager for auto ChromeDriver management)
         WebDriverManager.chromedriver().setup();
         
-        // Initialize ChromeDriver
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Uncomment to run in headless mode
+        options.addArguments("--headless");
         WebDriver driver = new ChromeDriver(options);
         
         try {
-            // Step 1: Navigate to the FitPeo Homepage
-            driver.get("https://www.fitpeo.com/");  // Replace with actual homepage URL
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+           driver.get("https://www.fitpeo.com/");  
+           driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             
-            // Step 2: Navigate to the Revenue Calculator Page
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             WebElement revenueCalculatorLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Revenue Calculator")));
             revenueCalculatorLink.click();
-            
-            // Step 3: Scroll Down to the Slider Section
-            WebElement sliderSection = driver.findElement(By.id("sliderSection"));  // Replace with actual ID or XPath
+    
+            WebElement sliderSection = driver.findElement(By.id("sliderSection")); 
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", sliderSection);
             
-            // Step 4: Adjust the Slider to 820
-            WebElement slider = driver.findElement(By.id("slider"));  // Replace with actual ID of the slider
-            WebElement sliderValueField = driver.findElement(By.id("sliderValueField"));  // Replace with actual ID of the value field
+            WebElement slider = driver.findElement(By.id("slider")); 
+            WebElement sliderValueField = driver.findElement(By.id("sliderValueField"));  
             
-            // Adjusting the slider value to 820 using Actions
             Actions action = new Actions(driver);
-            action.clickAndHold(slider).moveByOffset(200, 0).release().perform();  // Adjust offset based on your slider behavior
+            action.clickAndHold(slider).moveByOffset(200, 0).release().perform();  
             System.out.println("Slider value moved.");
             
-            // Step 5: Update the Text Field to 560
             sliderValueField.click();
             sliderValueField.clear();
             sliderValueField.sendKeys("560");
-
-            // Step 6: Validate Slider Value
             String sliderValue = sliderValueField.getAttribute("value");
             if (!sliderValue.equals("560")) {
                 System.out.println("Validation failed. Expected value: 560, but got: " + sliderValue);
             }
             System.out.println("Slider value is " + sliderValue);
 
-            // Step 7: Select CPT Codes
             WebElement cptCheckbox99091 = driver.findElement(By.id("cpt99091"));
             WebElement cptCheckbox99453 = driver.findElement(By.id("cpt99453"));
             WebElement cptCheckbox99454 = driver.findElement(By.id("cpt99454"));
@@ -70,7 +59,6 @@ public class FitPeoAutomation {
             
             System.out.println("CPT Codes selected.");
 
-            // Step 8: Validate Total Recurring Reimbursement
             WebElement totalReimbursementHeader = driver.findElement(By.xpath("//*[contains(text(), 'Total Recurring Reimbursement for all Patients Per Month:')]"));
             String totalReimbursementValue = totalReimbursementHeader.getText();
 
@@ -83,7 +71,6 @@ public class FitPeoAutomation {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // Close the browser
             driver.quit();
         }
     }
